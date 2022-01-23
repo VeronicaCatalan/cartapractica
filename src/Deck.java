@@ -4,11 +4,13 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 public class Deck {
-
+//variables
     //array para almacenar las cartas
     Carta[] mazo;
-    int nCarta;
 
+    int nCarta = 48;
+
+//constantes
     public final int OROS = 1;
     public final int COPAS = 2;
     public final int ESPADAS = 3;
@@ -20,25 +22,26 @@ public class Deck {
 
         int numCarta = 0;
 
-        for (int i = 1; i < 12; i++) {
-            mazo[numCarta] = new Carta(numCarta, OROS);
+        for (int i = 1; i <= 12; i++) {
+            mazo[numCarta] = new Carta(i, OROS);
             numCarta++;
-            for (int j = 12; j < 24; j++) {
-                mazo[numCarta] = new Carta(numCarta, COPAS);
-                numCarta++;
-                for (int k = 24; k < 36; k++) {
-                    mazo[numCarta] = new Carta(numCarta, ESPADAS);
-                    numCarta++;
+        }
+        for (int j = 1; j <= 12; j++) {
+            mazo[numCarta] = new Carta(j, COPAS);
+            numCarta++;
+        }
+        for (int k = 1; k <= 12; k++) {
+            mazo[numCarta] = new Carta(k, ESPADAS);
+            numCarta++;
+        }
 
-                    for (int l = 36; l < 48; l++) {
-                        mazo[numCarta] = new Carta(numCarta, BASTOS);
-                        numCarta++;
-                    }
-                }
-
-            }
+        for (int l = 1; l <= 12; l++) {
+            mazo[numCarta] = new Carta(l, BASTOS);
+            numCarta++;
         }
     }
+
+
 //barajar
     public void shuffle() {
         for (int i = 0; i < mazo.length; i++){
@@ -54,23 +57,51 @@ public class Deck {
 
 //extraer carta
     public Carta extractCard(){
-        nCarta = 48;
         nCarta--;
 
         return mazo[nCarta];
     }
+
 @Override
 
     public String toString(){
-        String s = "";
-        String ordenStr="";
+        String s= "";
 
-        for(int i=0 ;i< mazo.length;i--){
-            if(mazo[])
+        for(int i = 0; i < nCarta; i++){
 
+            if (mazo[i].getPalo() == OROS){
+                s += mazo[i].toString();//i posicion
+                s += ", ";
+            }
         }
+        s += "\n"; // salto de linea
+
+        for(int i = 0; i < nCarta; i++){
+            if (mazo[i].getPalo() == COPAS){
+                s += mazo[i].toString();//i posicion
+                s += ", ";
+            }
+        }
+         s += "\n";// salto de linea
+        for(int i = 0; i < nCarta; i++){
+
+            if (mazo[i].getPalo() == ESPADAS){
+                s += mazo[i].toString();//i posicion
+                s += ", ";
+            }
+        }
+        s += "\n"; // salto de linea
+        for(int i = 0; i < nCarta; i++){
+            if (mazo[i].getPalo() == BASTOS){
+                s += mazo[i].toString();//i posicion
+                s += ", ";
+            }
+        }
+
         return s;
     }
+
+
 
 
 

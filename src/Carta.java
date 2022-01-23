@@ -35,6 +35,9 @@ public class Carta {
         }
         return numberSuit;
     }
+    public int getPalo(){
+        return palo;
+    }
 
 
 }
