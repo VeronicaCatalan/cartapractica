@@ -1,8 +1,13 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 public class Deck {
 
     //array para almacenar las cartas
     Carta[] mazo;
-    int devuelvaCard;
+    int nCarta;
 
     public final int OROS = 1;
     public final int COPAS = 2;
@@ -37,15 +42,25 @@ public class Deck {
 //barajar
     public void shuffle() {
         for (int i = 0; i < mazo.length; i++){
-            int barajar = (int) (Math.random() * mazo.length);
-         }
+            int barajar = (int) (Math.random() * mazo.length);// aleatorio
 
+           // cambia de posicion
+            Carta temp = mazo[i];// almacena datos
+
+            mazo[i] = mazo [barajar];
+            mazo [barajar] = temp;
+        }
     }
+
+//extraer carta
     public Carta extractCard(){
+        nCarta = 48;
+        nCarta--;
 
-
-        return;
+        return mazo[nCarta];
     }
+@Override
+
     public String toString(){
         String s = "";
         String ordenStr="";
@@ -56,12 +71,52 @@ public class Deck {
         }
         return s;
     }
+
+
+
+    //TEMA 8 NO ENTRA
+    /*
     public void writeToFile(String nameFile){
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(new FileWriter(fileName));
+            out.println("number,suit");
+            for (int i = 0; i <= nCarta; i++) {
+                int num = mazo[i].getNumber();
+                int suit = mazo[i].getSuit();
+                out.println(num + "," +suit);
+            }
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
 
     }
     public static Deck readFromFile(String nameFile){
+        BufferedReader input = null;
         Deck deck = new Deck();
+        try {
+            input = new BufferedReader(new FileReader(fileName));
+            input.readLine();
+            String line;
+            int pos = 0;
+            while ((line = input.readLine()) != null) {
+                String[] items = line.split(",");
+                int num = Integer.parseInt(items[0]);
+                int suit = Integer.parseInt(items[1]);
+                Carta c = new Carta(num, suit);
+                deck.insertCard(c, pos);
+                pos++;
+            }
+            deck.setNextCard(pos - 1);
+            return  deck;
 
-        return deck;
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
     }
+    */
 }

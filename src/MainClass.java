@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class MainClass {
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Deck m = new Deck(); //nuevo mazo/baraja
         m.shuffle();// baraja. llamada al metodo shuffle de desk
 
@@ -12,9 +12,5 @@ public class MainClass {
         Carta c2 = m.extractCard();
         System.out.println(c1);
         System.out.println(c2);
-
-
-
-
-
+    }
 }
